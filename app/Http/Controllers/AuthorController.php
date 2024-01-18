@@ -7,6 +7,10 @@ use illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 
+use \App\Models\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 class AuthorController extends Controller
 {
     public function index(Request $request){
@@ -47,5 +51,47 @@ class AuthorController extends Controller
             return response()->json(['status' =>0,'Something went wrong!']);
         }
     }
+
+   /**  public function createPost(Request $request){
+    $request->validate([
+        'post_title' => 'required|unique:posts,post_title',
+        'post_content' => 'required',
+        'post_category' => 'required|exists:sub_categories,id',
+        'featured_image' => 'required|mimes:jpg,jpeg,png|max:1024',
+    ]);
+
+    try {
+        if ($request->hasFile('featured_image')) {
+            $path = "images/post_image/";
+            $file = $request->file('featured_image');
+            $filename = $file->getClientOriginalName();
+            $new_filename = time(). '_'.$filename;
+
+            $upload = Storage::disk('public')->put($path, $file->get());
+
+            if ($upload) {
+                $post = new Post();
+                $post->author_id = auth()->id();
+                $post->category_id = $request->post_category;
+                $post->post_title = $request->post_title;
+                $post->post_slug = Str::slug($request->post_title);
+                $post->post_content = $request->post_content;
+                $post->featured_image = $new_filename;
+                $saved = $post->save();
+
+                if ($saved) {
+                    return response()->json(['code' => 1, 'msg' => 'New post has been created successfully']);
+                } else {
+                    return response()->json(['code' => 3, 'msg' => 'Something went wrong saving post data']);
+                }
+            } else {
+                return response()->json(['code' => 3, 'msg' => 'Something went wrong uploading image']);
+            }
+        }
+    } catch (\Exception $e) {
+        return response()->json(['code' => 3, 'msg' => 'Error: ' . $e->getMessage()]);
+    }
+}
+*/
 
 }

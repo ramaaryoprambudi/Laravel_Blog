@@ -19,14 +19,20 @@ use App\Http\Controllers\AuthorController;
         Route::view('/settings','Backend.pages.settings')->name('settings');
         Route::view('/authors','Backend.pages.authors')->name('authors');
         Route::view('/category','Backend.pages.categories')->name('category');
+
+
         Route::prefix('posts')->name('posts')->group(function(){
         Route::view('/add-posts','Backend.pages.add-posts')->name('add-posts');
+        Route::view('/all-posts','Backend.pages.all_posts')->name('all_posts');
 });
+
+
 });
 
 Route::middleware(['auth:web','route_admin'])->group(function(){
         Route::view('/settings','Backend.pages.settings')->name('settings');
         Route::view('/authors','Backend.pages.authors')->name('authors');
+
 });
 
 });

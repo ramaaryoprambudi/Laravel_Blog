@@ -171,9 +171,9 @@
                 </div>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('authorpostsadd-posts') }}" >
+                <a class="nav-link" href="{{ route('authorpostsall_posts') }}" >
                   <span class="nav-link-title">
-                    Posts
+                    All Posts
                   </span>
                 </a>
               </li>
@@ -188,7 +188,7 @@
               @endif --}}
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('authorauthors') }}" >
+                <a class="nav-link" href="{{ route('authorpostsadd-posts') }}" >
                   <span class="nav-link-title">
                     Write
                   </span>
