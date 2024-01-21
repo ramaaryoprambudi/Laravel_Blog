@@ -74,4 +74,8 @@ protected function getDefaultPicture()
         });
     }
 
+    public function post(){
+        return $this->hasMany(Post::class,'author_id','id');
+    }
+
 }

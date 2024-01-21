@@ -94,4 +94,50 @@ class AuthorController extends Controller
 }
 */
 
+    public function editPost(Request $request){
+        if(!request()->post_id){
+            return abort(404);
+        }else{
+            $post = Post::find(request()->post_id);
+            $data = [
+                'post' => $post,
+                'pageTtitle' => 'Edit Post',
+            ];
+            return view('Backend.pages.edit_post',$data);
+        }
+    }
+
+    public function update(Request $request)
+{
+    if (! $request->post_id) {
+        return abort(404);
+    } else {
+        $request->validate([
+            'post_title' => 'required|unique:posts,post_title,' . $request->post_id,
+            'post_content' => 'required',
+            'post_category' => 'required|exists:sub_categories,id',
+            'featured_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $post = Post::find($request->post_id);
+        $post->category_id = $request->post_category;
+        $post->post_content = $request->post_content;
+        $post->post_title = $request->post_title;
+
+        if ($request->hasFile('featured_image')) {
+            $imageName = time().'.'.$request->featured_image->extension();
+            $request->featured_image->storeAs('public/images/post_image', $imageName);
+            $post->featured_image = $imageName;
+        }
+
+        $saved = $post->save();
+
+        if ($saved) {
+            return response()->json(['code' => 1, 'msg' => 'Post has been updated successfully']);
+        } else {
+            return response()->json(['code' => 3, 'msg' => 'Something went wrong while updating the post']);
+        }
+    }
+}
+
 }

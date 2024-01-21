@@ -51,7 +51,7 @@
                     <ul class="nav nav-pills card-header-pills">
                         <h4>Subcategory</h4>
                         <li class="nav-item ms-auto">
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#category_modal" wire:click.prevent='resetModalForm'>Add Category</button>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#subcategory_modal" wire:click.prevent='resetModalForm'>Add Category</button>
                         </li>
                     </ul>
                 </div>

@@ -13,8 +13,8 @@ use App\Http\Controllers\AuthorController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function () {
+    return view('Frontend.home');
 });
 
 

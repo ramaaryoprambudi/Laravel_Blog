@@ -1,5 +1,5 @@
 @extends('Backend.layouts.pages-layout')
-@section('PageTitle', isset($PageTitle) ? $PageTitle : 'Profile' )
+@section('pageTitle', isset($PageTitle) ? $PageTitle : 'Profile' )
 @section('content')
 
 <div class="container ms-1 mt-3 mt-md-0">

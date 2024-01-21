@@ -9,6 +9,7 @@ class AuthorLoginForm extends Component
 {
     public $login_id,$password;
     public $returnUrl;
+    public $remember_me = false;
 
     public function mount(){
         $this->returnUrl = request()->returnUrl;
@@ -19,26 +20,29 @@ class AuthorLoginForm extends Component
 
         $fieldtype = filter_var($this->login_id,FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        if($fieldtype == 'email'){
-            $this->validate([
-            'login_id'=>'required|email|exists:users,email',
-            'password'=>'required|min:5'
-        ],[
-            'login_id.required'=>'Email or Username is required',
-            'login_id.email'=>'invalid email address',
-            'login_id.exists'=>'Email is not registered',
-            'password'=>'password is required',
-        ]);
-        }else{
-            $this->validate([
-            'login_id'=>'required|exists:users,username',
-            'password'=>'required|min:5|max:10',
-        ],[
-            'login_id.required'=>'Email Address or Username is required',
-            'login_id.exists'=>'Username is not registered',
-            'password'=>'Password is required',
-            ]);
-        }
+        if ($fieldtype == 'email') {
+    $this -> validate([
+        'login_id' => 'required|email|exists:users,email',
+        'password' => 'required|min:5',
+        'remember_me' => 'required|boolean', // Validate remember_me as boolean
+    ], [
+        'login_id.required' => 'Email or Username is required',
+        'login_id.email' => 'Invalid email address',
+        'login_id.exists' => 'Email is not registered',
+        'password.required' => 'Password is required',
+        'remember_me.required' => 'Please accept the Remember me option',
+        'remember_me.boolean' => 'The Remember me option must be true or false'
+    ]);
+    } else {
+    $this -> validate([
+        'login_id' => 'required|exists:users,username',
+        'password' => 'required|min:5|max:10'
+    ], [
+        'login_id.required' => 'Email Address or Username is required',
+        'login_id.exists' => 'Username is not registered',
+        'password.required' => 'Password is required'
+    ]);
+    }
 
         $creds = array($fieldtype=>$this->login_id,'password'=>$this->password);
 

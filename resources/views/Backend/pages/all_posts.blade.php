@@ -1,5 +1,5 @@
 @extends('Backend.layouts.pages-layout')
-@section('PageTitle',isset($PageTitle) ? $PageTitle : 'Home')
+@section('pageTitle',isset($PageTitle) ? $PageTitle : 'Blog Saya')
 @section('content')
 
 <div class="page-header d-print-none">

@@ -23,20 +23,19 @@
           <div class="mb-3">
             <label class="form-label">Password</label>
             <div class="input-group input-group-flat">
-              <input type="password" class="form-control" placeholder="Password" wire:model="password">
+                <input type="password" class="form-control" placeholder="Password" wire:model="password" id="password">
 
-              <span class="input-group-text">
-                <a href="#" class="link-secondary" data-bs-toggle="tooltip" aria-label="Show password" data-bs-original-title="Show password"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"></path></svg>
-                </a>
-              </span>
+                <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility()" id="togglePassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="2"></circle><path d="M2 12s3-8 10-8s10 8 10 8s-3 8-10 8s-10-8-10-8"></path></svg>
+                </span>
             </div>
             <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-          </div>
+        </div>
           <div class="mb-3">
             <label class="form-check">
-              <input type="checkbox" class="form-check-input">
-              <span class="form-check-label">Agree the <a href="./terms-of-service.html" tabindex="-1">terms and policy</a>.</span>
+              <input type="checkbox" class="form-check-input"  wire:model="agreeTerms">
+              <span class="form-check-label">Agree the <a href="{{ route('authortermsofservice') }}" tabindex="-1">terms and policy</a>.</span>
+              <span class="text-danger">@error('agreeTerms') <span>{{ $message }}</span> @enderror</span>
             </label>
           </div>
           <div class="form-footer">
@@ -48,3 +47,22 @@
         </div>
     </form>
 </div>
+
+@push('scripts')
+    <!-- Tambahkan ini di bawah form atau di dalam file JavaScript terpisah -->
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('password');
+        var eyeIcon = document.getElementById('togglePassword');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="2"></circle><path d="M2 12s3-8 10-8s10 8 10 8s-3 8-10 8s-10-8-10-8"></path></svg>';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M22 12s-3-8-10-8s-10 8-10 8s3 8 10 8s10-8 10-8"></path></svg>';
+        }
+    }
+</script>
+
+@endpush

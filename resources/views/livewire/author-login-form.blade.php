@@ -45,7 +45,8 @@
             <div class="mb-2">
               <label class="form-check">
                 <input type="checkbox" class="form-check-input">
-                <span class="form-check-label">Remember me on this device</span>
+                <span class="form-check-label" wire:model="remember-me">Remember me on this device</span>
+                <span class="text-danger-mt-2">@error('remember-me'){{ $message }}@enderror</span>
               </label>
             </div>
             <div class="form-footer">

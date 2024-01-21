@@ -1,6 +1,6 @@
-@extends('Backend.layouts.pages-layout') @section('PageTitle',isset($PageTitle)
-? $PageTitle : 'Settings') @section('content')
-
+@extends('Backend.layouts.pages-layout')
+@section('pageTitle',isset($PageTitle) ? $PageTitle : 'Settings')
+@section('content')
 <div class="row align-items center">
     <div class="col">
         <h2 class="page-title">

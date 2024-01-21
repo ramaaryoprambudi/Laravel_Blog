@@ -9,8 +9,6 @@ use App\Models\Subcategory;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Imagick\Driver;
 class AddPost extends Component
 {
     use WithFileUploads;
@@ -30,7 +28,7 @@ class AddPost extends Component
 {
     $validator = Validator::make(
         ['featuredImage' => $this->featuredImage],
-        ['featuredImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048']
+        ['featuredImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min-width=100,max_width=1000,max_height=1000']
     );
 
     if ($validator->fails()) {

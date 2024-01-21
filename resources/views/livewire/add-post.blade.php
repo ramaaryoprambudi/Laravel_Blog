@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body">
         <!-- Livewire Form -->
-        <form wire:submit.prevent="savePost">
+        <form wire:submit.prevent="savePost" method="GET">
             @csrf
             <div class="mb-3">
                 <label for="postTitle" class="form-label">Post title</label>
