@@ -88,15 +88,20 @@
       .akhir {
         padding: 100px;
       }
+
+      .jumbotron{
+        height: 220px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
     @include('Frontend.layouts.inc.header')
 
     <!---->
-    <div class="kata text-center">
+    <div class="kata text-center jumbotron">
       <p>
-        "Jelajahi, Terinspirasi, dan <br />Bagikan Tulisanmu di [Nama Website],<br />
+        "Jelajahi, Terinspirasi, dan <br />Bagikan Tulisanmu di <b>Inspiloger</b> <br />
         Tempatnya Literasi Digital!"
       </p>
     </div>
@@ -248,7 +253,7 @@
              Inspiloger tempat di mana pengetahuan, inspirasi, dan kreativitas bersatu. Kami adalah komunitas online yang didedikasikan untuk menyediakan platform bagi para pembaca dan penulis untuk berbagi ide, pengalaman, dan wawasan
               melalui tulisan-tulisan yang menginspirasi.
             </p>
-            <a href="" class="btn btn-danger">Selengkapnya</a>
+            <a href="{{ route('hometentang-kami') }}" class="btn btn-danger">Selengkapnya</a>
           </div>
         </div>
       </div>
@@ -259,7 +264,7 @@
       <div class="row">
         <div class="col-md-6 text-center">
           <p class="text-akhir">Sudah siap bergabung dengan Inspiloger</p>
-          <a href="" class="btn btn-danger">Daftar</a>
+          <a href="{{ route('authorregister') }}" class="btn btn-danger">Daftar</a>
         </div>
         <div class="col-md-6">
           <div class="circle-icon-akhir text-center">
